@@ -18,9 +18,12 @@
         coreDeps = [
           elixir
           elixir-ls
-          pkgs.ffmpeg
-          pkgs.imagemagick
           pkgs.cacert
+        ];
+
+        appRuntimeDeps = [
+          pkgs.ffmpeg-headless
+          pkgs.imagemagick_light
         ];
 
         buildDeps = [
@@ -68,10 +71,7 @@
         packages.dockerImage = pkgs.dockerTools.buildLayeredImage {
           name = "toolshed";
           tag = "latest";
-          contents = [
-            pkgs.ffmpeg
-            pkgs.imagemagick
-          ] ++ runtimeUtils;
+          contents = appRuntimeDeps ++ runtimeUtils;
 
           config = {
             WorkingDir = "/app";
