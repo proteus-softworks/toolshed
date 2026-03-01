@@ -46,3 +46,14 @@ jobs:
           docker tag toolshed:final ghcr.io/${{ github.repository_owner }}/toolshed:${{ github.sha }}
           docker push ghcr.io/${{ github.repository_owner }}/toolshed:latest
           docker push ghcr.io/${{ github.repository_owner }}/toolshed:${{ github.sha }}
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /opt/apps
+            docker compose pull toolshed
+            docker compose up -d toolshed
