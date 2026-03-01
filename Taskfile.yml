@@ -1,0 +1,5 @@
+version: "3"
+
+tasks:
+  dev:
+    cmd: iex -S mix phx.server
