@@ -59,7 +59,13 @@ defmodule Toolshed.MixProject do
       {:gettext, "~> 0.26"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+
+      # Images
+      {:mogrify, "~> 0.9.3"},
+
+      # Audio
+      {:ffmpex, "~> 0.11.0"}
     ]
   end
 

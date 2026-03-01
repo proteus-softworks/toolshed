@@ -23,7 +23,7 @@
 
         appRuntimeDeps = [
           pkgs.ffmpeg-headless
-          pkgs.imagemagick_light
+          pkgs.imagemagick
         ];
 
         buildDeps = [
@@ -43,7 +43,7 @@
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = coreDeps ++ buildDeps ++ (with pkgs; [
+          buildInputs = coreDeps ++ appRuntimeDeps ++ buildDeps ++ (with pkgs; [
             (writeShellScriptBin "build-release" ''
               set -e
               mix local.hex --force
